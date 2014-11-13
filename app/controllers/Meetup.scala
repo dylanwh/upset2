@@ -10,9 +10,9 @@ import scala.concurrent.duration._
 import scala.concurrent.Future
 import play.api.libs.ws.WS
 import play.api.libs.json._
-import play.api.cache.Cached
+// import play.api.cache.Cached
 
-import com.github.theon.uri.dsl._
+import com.netaporter.uri.dsl._
 import models.meetup._
 import com.github.nscala_time.time.Imports._
 

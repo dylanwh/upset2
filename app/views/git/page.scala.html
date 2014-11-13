@@ -1,5 +1,7 @@
-@(page: models.Page)(implicit request: RequestHeader)
+@(page: models.Page)
 
-<div class="container">
-	@layout(page.title)(page.html)
-</div>
+@layout(page.title) {
+  <div class="container">
+    @page.html
+  </div>
+}

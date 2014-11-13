@@ -9,6 +9,7 @@ import models.git.GitRepository
 import models.Page
 
 import org.eclipse.jgit.transport.FetchResult
+import net.sf.jmimemagic.Magic
 
 import play.api._
 import play.api.mvc._
@@ -19,9 +20,9 @@ import play.api.templates.Html
 
 import scala.concurrent.duration._
 import scala.concurrent.Future
- 
-object Git extends Controller {
 
+
+object Git extends Controller {
   private val DEFAULT_GIT_URI = "git://github.com/suncoastlug/slug-pages.git"
   private val DEFAULT_GIT_DIR = "/tmp/upset/slug-pages"
 
@@ -45,12 +46,22 @@ object Git extends Controller {
   def page(path: String) = {
     val mdPath = path.replaceAll("\\.html$", ".md")
 
-    Action { implicit request =>
+    Action {
       repository.getContent(mdPath, "master") match {
         case None           => NotFound(path + " not found")
         case Some(markdown) => Ok {
           views.html.git.page( Page.parse(markdown, path) )
         }
+      }
+    }
+  }
+
+  def raw(path: String) = Action {
+    repository.getRawContent(path, "master") match {
+      case None          => NotFound(path + " not found")
+      case Some(content) => {
+          val mimeType = Magic.getMagicMatch(content).getMimeType
+          Ok(content).as(mimeType)
       }
     }
   }

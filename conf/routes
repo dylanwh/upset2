@@ -5,6 +5,7 @@
 # Home page
 GET     /                    controllers.Git.root
 GET     /page/:path          controllers.Git.page(path)
+GET     /raw/:path           controllers.Git.raw(path)
 GET     /git/fetch           controllers.Git.fetch()
 GET     /meetup/events.txt   controllers.Meetup.eventsText()
 

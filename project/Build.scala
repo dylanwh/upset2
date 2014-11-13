@@ -4,19 +4,20 @@ import play.Project._
 
 object ApplicationBuild extends Build {
   val appName         = "Upset"
-  val appVersion      = "2.2-SNAPSHOT"
+  val appVersion      = "2.3-SNAPSHOT"
   val configFile      = "-Dconfig.file=" + Option(System.getProperty("config.file")).getOrElse("conf/application.conf")
 
   val appDependencies = Seq(
     // Add your project dependencies here,
     jdbc,
     anorm,
-    "org.pegdown"   % "pegdown" % "1.4.0",
-    "org.eclipse.jgit" % "org.eclipse.jgit" % "3.0.0.201306101825-r",
-    "org.gitective" % "gitective-core" % "0.9.9",
-    "org.ccil.cowan.tagsoup" % "tagsoup" % "1.1.3",
-    "com.github.theon" %% "scala-uri" % "0.4.0-SNAPSHOT",
-    "com.github.nscala-time" %% "nscala-time" % "0.6.0"
+    "org.pegdown"            %  "pegdown"          % "1.4.0",
+    "org.eclipse.jgit"       %  "org.eclipse.jgit" % "3.0.0.201306101825-r",
+    "org.gitective"          %  "gitective-core"   % "0.9.9",
+    "org.ccil.cowan.tagsoup" %  "tagsoup"          % "1.1.3",
+    "net.sf.jmimemagic"      %  "jmimemagic"       % "0.1.3",
+    "com.github.theon"       %% "scala-uri"        % "0.4.0-SNAPSHOT",
+    "com.github.nscala-time" %% "nscala-time"      % "0.6.0"
   )
 
   /*

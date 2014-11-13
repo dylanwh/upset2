@@ -27,10 +27,13 @@ object GitRepository {
 
 class GitRepository private[git] (repository: Repository) {
 
-  private lazy val git = new Git(repository) 
-  
+  private lazy val git = new Git(repository)
+
   def getContent(path: String, branch: String): Option[String] =
     Option(BlobUtils.getContent(repository, branch, path))
+
+  def getRawContent(path: String, branch: String): Option[Array[Byte]] =
+    Option(BlobUtils.getRawContent(repository, branch, path))
 
   def fetch() = git.fetch.call()
 
